@@ -1,0 +1,42 @@
+html,
+body {
+    margin: 0;
+    /* padding: 0 10% 0; */
+    height: 100%;
+    /* background-color: #f9f9f9; */
+    /* background-color: #111111; */
+    background: url(../../images/bg.jpg) no-repeat;
+    background-size: cover;
+}
+
+body {
+    padding: 0;
+    position: relative;
+    background-color: #f2f2f2;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    font-family: MiSans,iconfont;
+    transition: all .3s;
+    user-select: none;
+    box-sizing: border-box;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+
+.hr {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: hsl(0deg 0% 75% / 45%);
+    margin: auto;
+}
+
+li{
+    list-style: none;
+}

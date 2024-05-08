@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4848298",
+      "name": "上升",
+      "font_class": "shangsheng",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "36104395",
+      "name": "奖杯@3x",
+      "font_class": "a-jiangbei3x",
+      "unicode": "e6ba",
+      "unicode_decimal": 59066
+    }
+  ]
+}

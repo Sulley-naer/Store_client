@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="Ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="js/jscript2.js"></script> -->
+    <style>
+        img {
+            vertical-align: middle;
+        }
+
+        table {
+            border: 1px solid black;
+        }
+
+        td {
+            border: 1px solid black;
+            height: 2.5em;
+            padding: 0 1em 0 1em;
+            
+        }
+
+        .mm {}
+    </style>
+    <script src="js/jscript.js"></script>
+</head>
+
+<body onload="gettimer()">
+    <form name="time">
+        <input type="text" value="" name="time1">
+    </form>
+
+    <form action="" name="sjs">
+        <input type="text" name="xs">
+        <input type="button" name="开始" onclick="ks()">
+        <input type="button" name="停止" onclick="js()">
+    </form>
+    <div style=" margin-top: 5em;" id="h2"></div>
+    <div style="width: 10.5em;text-align: center;position: relative;">
+        <input type="text" class="mm" value="">
+        <img src="案例练习-素材/close.png" alt="" class="tp" style="position: absolute;right: -4px;top: -2px;display: none;"
+            width="30px">
+    </div>
+    <div class="jlt" style="height: 24px;width: 24px;background-repeat: no-repeat;background-image: url(案例练习-素材/sprite.png);">
+    <script>
+        setInterval(function () {
+            function gettimer() {
+                var sj = new Date
+                var s = sj.getHours()
+                var f = sj.getMinutes()
+                var m = sj.getSeconds()
+                s = s < 10 ? "0" + s : s
+                f = f < 10 ? "0" + f : f
+                m = m < 10 ? "0" + m : m
+                document.time.time1.value = s + ":" + f + ":" + m
+            }
+            gettimer()
+        }, 1000)
+
+        let start
+        function ks() {
+            document.sjs.xs.value = r(1, 60)
+            start = setTimeout(ks, 100)
+        }
+
+        function js() {
+            clearInterval(start)
+        }
+        let mm = document.querySelector('.mm')
+        console.log(mm);
+        let tp = document.querySelector('.tp')
+        mm.onfocus = function () {
+            tp.style.display = "block"
+        }
+        mm.onblur = function () {
+            tp.style.display = "none"
+        }
+        tp.onclick = function () {
+            console.log("mmsda");
+            if (mm.type == "text") {
+                mm.type = "password"
+                tp.src = "案例练习-素材/open.png"
+            }
+            else {
+                mm.type = "text"
+                tp.src = "案例练习-素材/close.png"
+            }
+        }
+        tp.onmousedown = (e) => {
+            e.preventDefault();
+        }
+
+        let jlt=document.querySelector('.jlt')
+        jl.mark=0
+        function jl(){
+            jlt.style.backgroundPositionY=(this.mark*-44)+"px"
+            this.mark++
+            if(this.mark>14){
+                this.mark=0
+            }
+        }
+        let jltjs
+        jlt.mark=1
+        jlt.onclick=function(){
+            this.mark++
+            if(this.mark%2==1){
+               jltjs=setInterval(function(){jl()},1000)
+            }
+            else{
+                clearInterval(jltjs)
+                mark=1
+            }
+        }
+    </script>
+</body>
+
+</html>

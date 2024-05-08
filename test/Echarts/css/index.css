@@ -1,0 +1,686 @@
+.header {
+  height: 6.5%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(../images/topBarbg.png) no-repeat;
+  background-size: contain;
+  position: relative;
+}
+.header .mark {
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12em;
+  height: 3.7rem;
+}
+@keyframes table {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+i.more {
+  background-color: dodgerblue !important;
+}
+i.mid {
+  background-color: #77eeee !important;
+}
+i.ms {
+  background-color: blanchedalmond !important;
+}
+.item-border {
+  border-image-source: url(../images/border.png);
+  border-image-slice: 50 33 29 44;
+  border-image-width: 33px;
+  box-shadow: inset 0px 0px 15px 2px #0067ff;
+}
+main {
+  height: 93.5%;
+  width: 100%;
+  padding-inline: 6px;
+}
+main > div {
+  height: 100%;
+}
+main .left .title {
+  width: 100%;
+  height: 7.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1rem;
+  position: relative;
+}
+main .left .title img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+main .left .title .title-box {
+  width: 25%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+main .left .title .title-box > span {
+  height: 50%;
+  color: white;
+}
+main .left .title .title-box > p {
+  padding: 0;
+  margin: 0;
+  color: cornflowerblue;
+  display: flex;
+  align-items: center;
+  font-size: smaller;
+}
+main .left .title .title-box > p > span {
+  padding-left: 0.5em;
+  font-size: smaller;
+}
+main .left .title .title-box > p > i {
+  width: 3px;
+  height: 8px;
+  border-radius: 5px;
+  display: block;
+  background: red;
+  padding-right: 3px;
+}
+main .left .tab {
+  width: 100%;
+  height: 50%;
+  position: relative;
+  margin-top: 1rem;
+  border-top-right-radius: 28px;
+  border-bottom-left-radius: 19px;
+}
+main .left .tab .head {
+  width: 100%;
+  height: 2rem;
+  padding: 1.5em 2em;
+  color: rgba(103, 103, 103, 0.5);
+  font-size: medium;
+  display: flex;
+  align-items: center;
+}
+main .left .tab .head > * {
+  white-space: nowrap;
+  overflow: auto;
+  text-overflow: ellipsis;
+}
+main .left .tab .head > span {
+  z-index: 3;
+}
+main .left .tab .head > span:is(:hover, :active) {
+  color: whitesmoke;
+}
+main .left .tab .head > span.act {
+  color: whitesmoke;
+}
+main .left .tab .head > i {
+  width: 3px;
+  height: 14px;
+  border-radius: 5px;
+  display: block;
+  background-color: #77eeee;
+  margin-inline: 0.5em;
+}
+main .left .tab .content {
+  height: 88%;
+  width: 100%;
+  padding-inline: 2em;
+  overflow: auto;
+}
+main .left .tab .content > table {
+  animation: table 13s linear infinite;
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  color: rgba(111 165 230 / 60%);
+  overflow: scroll;
+  --bs-table-hover-bg: #2e356752;
+  --bs-table-active-bg: #a8bff314;
+  --bs-table-hover-color: deepskyblue;
+  --bs-table-active-color: skyblue;
+}
+main .left .tab .content > table:hover {
+  animation-play-state: paused;
+  transform: translateY(0);
+}
+main .left .tab .content > table > * {
+  white-space: nowrap;
+  overflow: scroll;
+  text-overflow: ellipsis;
+}
+main .left .tab .content > table > tr {
+  width: 100%;
+}
+main .left .tab .content > table > tr td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.5em 0;
+  border-bottom: 1px solid #00000010;
+  white-space: nowrap;
+}
+main .left .foot {
+  width: 100%;
+  height: 36.2%;
+  position: relative;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-top-right-radius: 28px;
+  border-bottom-left-radius: 19px;
+}
+main .left .foot .echarts {
+  padding-top: 1em;
+  padding-left: 1em;
+  width: 70%;
+  height: 100%;
+}
+main .left .foot .sum {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 70%;
+  background: #007eff1c;
+  margin-right: 1.5em;
+  float: right;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+main .left .foot .sum > p {
+  color: white;
+  font-size: larger;
+  margin-bottom: 0.1em;
+}
+main .left .foot .sum .tip {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+main .left .foot .sum .tip > span {
+  font-size: small;
+  color: cornflowerblue;
+}
+main .left .foot .sum .tip > i {
+  width: 3px;
+  height: 8px;
+  border-radius: 5px;
+  display: block;
+  background: red;
+  margin-right: 3px;
+}
+main .mid {
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative;
+}
+main .mid .title {
+  width: 100%;
+  display: flex;
+  padding-top: 3%;
+  background-color: #00000026;
+  color: whitesmoke;
+  font-size: small;
+  padding-bottom: 1em;
+  margin-top: 8px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  font-family: iconfont;
+}
+main .mid .title > i::before {
+  margin-inline: 0.5em;
+  color: deepskyblue;
+}
+main .mid .main {
+  width: 100%;
+  height: 52%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #f2eded0f;
+  border-radius: 6px;
+}
+main .mid .foot {
+  width: 100%;
+  margin-top: 2%;
+  height: 36.3%;
+  border-top-right-radius: 26px;
+  border-bottom-left-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .mid .foot .echarts {
+  padding-top: 1em;
+  padding-left: 1em;
+  width: 70%;
+  height: 100%;
+}
+main .mid .foot .sum {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 22%;
+  height: 70%;
+  background: #007eff1c;
+  margin-right: 1.5em;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+main .mid .foot .sum > p {
+  color: white;
+  font-size: larger;
+  margin-bottom: 0.1em;
+}
+main .mid .foot .sum .tip {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+main .mid .foot .sum .tip > span {
+  font-size: small;
+  color: cornflowerblue;
+}
+main .mid .foot .sum .tip > i {
+  width: 3px;
+  height: 8px;
+  border-radius: 5px;
+  display: block;
+  background: red;
+  margin-right: 3px;
+}
+main .rig {
+  position: relative;
+  height: 100%;
+}
+main .rig .title {
+  width: 100%;
+  min-height: 7.5%;
+  height: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1rem;
+  position: relative;
+}
+main .rig .title img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+main .rig .title .content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+main .rig .title .content .head {
+  width: 100%;
+  height: 2rem;
+  padding: 0.5em 2em;
+  color: rgba(103, 103, 103, 0.5);
+  font-size: medium;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main .rig .title .content .head > * {
+  white-space: nowrap;
+  overflow: auto;
+  text-overflow: ellipsis;
+}
+main .rig .title .content .head > span {
+  font-size: small;
+  z-index: 3;
+}
+main .rig .title .content .head > span:is(:hover, :active) {
+  color: whitesmoke;
+}
+main .rig .title .content .head > span.act {
+  color: whitesmoke;
+}
+main .rig .title .content .head > i {
+  width: 3px;
+  height: 14px;
+  border-radius: 5px;
+  display: block;
+  background-color: #77eeee;
+  margin-inline: 0.7em;
+}
+main .rig .title .content .arrbox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  min-height: 3rem;
+}
+main .rig .title .content .arrbox > div.arr {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+main .rig .title .content .arrbox > div.arr > p {
+  font-size: large;
+  color: whitesmoke;
+  margin: 0;
+}
+main .rig .title .content .arrbox > div.arr > span {
+  font-size: small;
+  color: cornflowerblue;
+  display: flex;
+  align-items: center;
+  text-indent: 3px;
+}
+main .rig .title .content .arrbox > div.arr > span i {
+  margin-inline: 5px;
+  width: 3px;
+  height: 8px;
+  border-radius: 5px;
+  display: block;
+  background: red;
+  margin-right: 3px;
+}
+main .rig .main {
+  width: 100%;
+  margin-top: 1rem;
+  height: 30%;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 34px;
+  position: relative;
+}
+main .rig .main .echarts-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+main .rig .main .echarts-box .echarts {
+  padding-top: 1em;
+  padding-left: 1em;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 1.5rem;
+}
+main .rig .main .echarts-box .msgbox {
+  position: absolute;
+  top: 0.8em;
+  left: 1em;
+  display: flex;
+  align-items: center;
+}
+main .rig .main .echarts-box .msgbox p {
+  font-size: large;
+  color: whitesmoke;
+  margin: 0;
+  margin-right: 0.25em;
+}
+main .rig .main .echarts-box .msgbox i {
+  width: 3px;
+  height: 10px;
+  border-radius: 5px;
+  display: block;
+  background: red;
+  padding-right: 5px;
+}
+main .rig .main .echarts-box .msgbox span {
+  z-index: 5;
+  color: cornflowerblue;
+  margin-inline: 5px;
+  display: flex;
+  justify-content: center;
+  min-width: 1em;
+  font-size: small;
+}
+main .rig .main .echarts-box .msgbox span:is(:hover, :focus) {
+  color: #9cd4ec !important;
+}
+main .rig .main .echarts-box .msgbox span.act {
+  color: whitesmoke !important;
+  background: rgba(109, 166, 251, 0.811);
+  padding: 1.5px;
+  border-radius: 5px;
+}
+main .rig .submain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+  height: 22%;
+}
+main .rig .submain > div {
+  width: 48%;
+  height: 100%;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 34px;
+  position: relative;
+}
+main .rig .submain > div > .echarts {
+  width: 100%;
+  height: 100%;
+}
+main .rig .submain .arrbox {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  min-height: 3rem;
+}
+main .rig .submain .arrbox > div.arr {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1em;
+  align-items: center;
+}
+main .rig .submain .arrbox > div.arr > p {
+  font-size: large;
+  color: whitesmoke;
+  margin: 0;
+}
+main .rig .submain .arrbox > div.arr > span {
+  font-size: smaller;
+  color: cornflowerblue;
+  display: flex;
+  align-items: center;
+  text-indent: 3px;
+}
+main .rig .submain .arrbox > div.arr > span i {
+  margin-inline: 5px;
+  width: 3px;
+  height: 8px;
+  border-radius: 5px;
+  display: block;
+  background: red;
+  margin-right: 3px;
+}
+main .rig .foot {
+  margin-top: 3%;
+  width: 100%;
+  height: 28.7%;
+  padding: 0.7em;
+  border-top-right-radius: 28px;
+  border-bottom-left-radius: 19px;
+}
+main .rig .foot .title {
+  width: 100%;
+  height: 2.5em;
+  display: flex;
+  align-content: space-between;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+main .rig .foot .title > div {
+  color: whitesmoke;
+  font-weight: normal;
+}
+main .rig .foot .title > div:not(div[class*="mark"]):is(:hover, :focus),
+main .rig .foot .title > div:not(div[class*="mark"]).act {
+  color: #9cd4ec !important;
+}
+main .rig .foot .title .mark {
+  background: transparent;
+  display: block;
+  color: #5ec2f58a;
+  font-size: small;
+}
+main .rig .foot .main {
+  width: 100%;
+  height: calc(calc(100% - 2.5em) - 0.7em);
+  margin: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+main .rig .foot .main > div {
+  height: 100%;
+}
+main .rig .foot .main .left {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main .rig .foot .main .left > div {
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+main .rig .foot .main .left > div > i {
+  font-size: 30px;
+  font-family: "iconfont";
+  display: block;
+  font-style: normal;
+  position: relative;
+}
+main .rig .foot .main .left > div > i.one {
+  color: #ff5757;
+}
+main .rig .foot .main .left > div > i.one::before {
+  content: "1";
+}
+main .rig .foot .main .left > div > i.two {
+  color: #64efe3;
+}
+main .rig .foot .main .left > div > i.two::before {
+  content: "2";
+}
+main .rig .foot .main .left > div > i.three {
+  color: #00a1ff;
+}
+main .rig .foot .main .left > div > i.three::before {
+  content: "3";
+}
+main .rig .foot .main .left > div > i::before {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: #000;
+  font-size: small;
+}
+main .rig .foot .main .left > div > span {
+  color: cornflowerblue;
+  margin-inline: 0.5em;
+}
+main .rig .foot .main .mid {
+  width: 31%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+main .rig .foot .main .mid > div {
+  padding-right: 12px !important;
+  width: 100%;
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+}
+main .rig .foot .main .mid > div:is(:hover, :focus),
+main .rig .foot .main .mid > div.act {
+  background: #248afc2e;
+}
+main .rig .foot .main .mid > div:is(:hover, :focus) > span,
+main .rig .foot .main .mid > div.act > span {
+  color: whitesmoke !important;
+}
+main .rig .foot .main .mid > div > span {
+  color: #c0c0c0;
+  font-size: small;
+  padding-right: 10px;
+}
+main .rig .foot .main .mid > div i {
+  position: absolute;
+  right: -2%;
+  font-family: "iconfont";
+  font-style: normal;
+  color: #f04b22;
+}
+main .rig .foot .main .mid > div i.fx {
+  transform: scaleY(-1);
+  color: #8cc269;
+}
+main .rig .foot .main .right {
+  padding-block: 5px;
+  width: 34%;
+  background-color: #248afc2e;
+  height: max-content;
+}
+main .rig .foot .main .right > dl {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+}
+main .rig .foot .main .right > dl > dd {
+  height: 1.6em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5em;
+  color: #64daefbe;
+  margin: 0;
+}
+main .rig .foot .main .right > dl > dd > span {
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .rig .foot .main .right > dl > dd i {
+  padding-left: 2px;
+  font-family: "iconfont";
+  font-size: small;
+  font-style: normal;
+  color: #f04b22;
+}
+main .rig .foot .main .right > dl > dd i.fx {
+  transform: scaleY(-1);
+  color: #8cc269;
+}
