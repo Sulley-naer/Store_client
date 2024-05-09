@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #but {
+            padding: 1em;
+        }
+
+        .rname {
+            text-align: center;
+            height: 20em;
+            margin-top: 2em;
+            width: 30%;
+            margin: auto;
+            background: skyblue;
+            line-height: 20em;
+            font-size: larger;
+        }
+    </style>
+</head>
+
+<body style="background: white;">
+    <label>
+        <input type="checkbox" id="xz" value="唱">唱
+    </label>
+    <label>
+        <input type="checkbox" id="xz" value="跳">跳
+    </label>
+    <label>
+        <input type="checkbox" id="xz" value="Rap">Rap
+    </label>
+    <label>
+        <input type="checkbox" id="xz" value="篮球">篮球
+    </label>
+    <input type="button" id="qx" value="全选">
+    <input type="button" id="qbx" value="全不选">
+    <input type="button" id="fx" value="反选">
+    <input type="button" id="tj" value="提交" class="cla1">
+    <input type="text" id="sr" value="默认">
+    <input type="password" id="mm">
+    <span class="hf"></span>
+    <bR></bR>
+    <input type="button" id="but" value="1">
+    <input type="button" id="but" value="2">
+    <input type="button" id="but" value="3">
+    <input type="button" id="but" value="4">
+    <input type="button" id="but" value="5">
+    <br>
+    <div class="rname">1</div>
+    <button class="rname-start">开始</button>
+    <button class="rname-stop">暂停</button>
+    
+    <script>
+        var tj = document.querySelector('.cla1')
+        var body = document.body
+        var mm = document.getElementById('mm')
+        var hf = document.querySelector('.hf')
+        var but = document.querySelectorAll('#but')
+        var rname = document.querySelector('.rname')
+        let narr = ['zze', 'rws', 'fszc', 'fdsf', 'hjyg', 'jku', 'vcd', 'hdx']
+        var rnameks = document.querySelector('.rname-start')
+        var rnamezt = document.querySelector('.rname-stop')
+        console.log(rnameks);
+        console.log(rnamezt);
+        var jsq1
+        var cs = 0
+        function jsq() {
+            jsq1 = setInterval(
+                function () {
+                    console.log(cs);
+                    rname.innerHTML = narr[i]
+                    i++
+                    if (i >= narr.length) {
+                        i = 0;
+                    }
+                }, 100)
+        }
+        rnameks.onclick = function () {
+            if (cs < 1) {
+                jsq()
+                cs++
+            }
+        }
+    
+        rnamezt.onclick = function () {
+            clearInterval(jsq1)
+            cs = 0;
+            console.log(cs);
+        }
+        for (var i = 0; i < but.length; i++) {
+            but[i].onclick = function () {
+                for (var i = 0; i < but.length; i++) {
+                    but[i].style.backgroundColor = ""
+                }
+                this.style.backgroundColor = "red"
+                console.log(this.background);
+            }
+        }
+        mm.removeAttribute
+        mm.onfocus = function () {
+            if (this.value.length > 6) {
+                hf.innerHTML = "密码验证通过"
+            }
+            if (this.value.length < 7) {
+                hf.innerHTML = "密码长度小于7"
+            }
+        }
+        mm.onblur = function () {
+            if (this.value.length > 6) {
+                hf.innerHTML = "密码验证通过"
+            }
+            if (this.value.length < 7) {
+                hf.innerHTML = "密码长度小于7"
+            }
+        }
+        qx.onclick = function () {
+            for (let i = 0; i < xz.length; i++) {
+                xz[i].checked = true
+            }
+        }
+        qbx.onclick = function () {
+            for (let i = 0; i < xz.length; i++) {
+                xz[i].checked = false
+            }
+        }
+        fx.onclick = function () {
+            for (let i = 0; i < xz.length; i++) {
+                xz[i].checked = !xz[i].checked
+            }
+        }
+        tj.onclick = function () {
+            for (let i = 0; i < xz.length; i++) {
+                if (xz[i].checked == true) {
+                    console.log(xz[i].value);
+                }
+            }
+            tj.className = 'cla1 cla2'
+        }
+
+        var sr = document.getElementById('sr')
+        sr.onfocus = function () {
+            if (this.value == "默认") {
+                this.value = ""
+            }
+            sr.onblur = function () {
+                if (this.value == "") {
+                    this.value = "默认"
+                }
+            }
+        }
+        var mark = 0
+        tj.onclick = function () {
+            if (mark == 0) {
+                tj.style.background = document.body.style.background
+                mark++
+            }
+            else {
+                this.style.background = "black"
+                mark = 0
+            }
+        }
+    </script>
+</body>
+
+</html>

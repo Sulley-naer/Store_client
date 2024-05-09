@@ -1,0 +1,1314 @@
+<!--
+ * @creater: Sulley-naer 1444736434@qq.com
+ * @since: 2023-12-13 11:30:31
+ * @lastTime: 2024-01-08 14:29:02
+ * @LastAuthor: Sulley-naer 1444736434@qq.com
+ * @文件相对路径: \text\Echarts\index.html
+ * @message: X项目
+ * 可以输入预定的版权声明、个性签名、空行等
+ * Copyright (©) 2024 by ${git_name} && Sulley-naer email: ${git_email} && 1444736434@qq.com, All Rights Reserved.
+-->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>Echarts学习</title>
+    <!-- 字体样式 -->
+    <link rel="stylesheet" href="base/font/MiSans-Normal.ttf" />
+    <link rel="stylesheet" href="base/font/font.css" />
+    <!-- <link rel="stylesheet" href="base/iconfont/iconfont.css" /> -->
+
+    <!-- 三方工具 -->
+    <link
+      rel="stylesheet"
+      href="base/bootstrap/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css"
+    />
+    <link
+      rel="stylesheet"
+      href="base/bootstrap/bootstrap-icon/bootstrap-icons.css"
+    />
+
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+
+    <!-- 项目样式 -->
+    <link rel="stylesheet" href="css/index.less" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="base/iconfont/iconfont.css" />
+
+    <!-- 公共样式 -->
+    <link rel="stylesheet" href="base/css/style.css" />
+    <link rel="stylesheet" href="base/css/base.css" />
+
+    <!--  移动端  -->
+    <!-- <link rel="stylesheet" href="../bootstrap/fullPage.js-4.0.20/dist/fullpage.css"> -->
+
+    <!-- Echarts -->
+    <script src="base/bootstrap/echarts-5.4.3/dist/echarts.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+    <!-- 大屏适配 -->
+    <!-- <script src="base/bootstrap/flexible.js"></script> -->
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="mark"></a>
+    </header>
+    <main class="row">
+      <div class="col-4 left">
+        <div class="title">
+          <img src="images/border.png" alt="" />
+          <div class="title-box">
+            <span>2190</span>
+            <p><i class="more"></i><span>设备总数</span></p>
+          </div>
+          <div class="title-box">
+            <span>190</span>
+            <p><i class="mid"></i><span>季度新增</span></p>
+          </div>
+          <div class="title-box">
+            <span>3001</span>
+            <p><i class="mid"></i><span>运营设备</span></p>
+          </div>
+          <div class="title-box">
+            <span>108</span>
+            <p><i></i><span>异常设备</span></p>
+          </div>
+        </div>
+        <div class="tab item-border">
+          <div class="head">
+            <span class="act">故障设备监控</span>
+            <i></i>
+            <span>异常设备监控</span>
+          </div>
+          <div class="content">
+            <table class="table table-hover table-borderless">
+              <thead>
+                <tr class="table-active">
+                  <th scope="col">故障时间</th>
+                  <th scope="col" colspan="2">设备地址</th>
+                  <th scope="col">异常代码</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">20180701</th>
+                  <td colspan="2">北京市昌平西路金系龙写字楼</td>
+                  <td>1000001</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190501</th>
+                  <td colspan="2">北京市昌平区路城西路金燕龙写字楼</td>
+                  <td>1000002</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table table-hover table-borderless">
+              <thead>
+                <tr class="table-active">
+                  <th scope="col">故障时间</th>
+                  <th scope="col" colspan="2">设备地址</th>
+                  <th scope="col">异常代码</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">20180701</th>
+                  <td colspan="2">北京市昌平西路金系龙写字楼</td>
+                  <td>1000001</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190501</th>
+                  <td colspan="2">北京市昌平区路城西路金燕龙写字楼</td>
+                  <td>1000002</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+                <tr>
+                  <th scope="row">20190704</th>
+                  <td colspan="2">北京市昌平区建材城西路金燕龙</td>
+                  <td>1000003</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="foot item-border">
+          <div
+            class="echarts"
+            id="ec1"
+            _echarts_instance_="ec_1704423706593"
+            style="
+              user-select: none;
+              -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+              position: relative;
+            "
+          >
+            <div
+              style="
+                position: relative;
+                width: 346px;
+                height: 288px;
+                padding: 0px;
+                margin: 0px;
+                border-width: 0px;
+              "
+            >
+              <canvas
+                data-zr-dom-id="zr_0"
+                width="519"
+                height="432"
+                style="
+                  position: absolute;
+                  left: 0px;
+                  top: 0px;
+                  width: 346px;
+                  height: 288px;
+                  user-select: none;
+                  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                  padding: 0px;
+                  margin: 0px;
+                  border-width: 0px;
+                "
+              ></canvas>
+            </div>
+            <div class=""></div>
+          </div>
+          <div class="sum">
+            <p>320,11</p>
+            <div class="tip">
+              <i></i>
+              <span>点位总数</span>
+            </div>
+            <p>418</p>
+            <div class="tip">
+              <i class="ms"></i>
+              <span>本月新增</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-5 mid">
+        <div class="title"><i class="bi bi-box"></i>设备数据统计</div>
+        <div class="main" id="map"></div>
+        <div class="foot item-border">
+          <div
+            class="echarts"
+            id="ec2"
+            _echarts_instance_="ec_1704423706594"
+            style="
+              user-select: none;
+              -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+              position: relative;
+            "
+          >
+            <div
+              style="
+                position: relative;
+                width: 478px;
+                height: 289px;
+                padding: 0px;
+                margin: 0px;
+                border-width: 0px;
+                cursor: default;
+              "
+            >
+              <canvas
+                data-zr-dom-id="zr_0"
+                width="717"
+                height="433"
+                style="
+                  position: absolute;
+                  left: 0px;
+                  top: 0px;
+                  width: 478px;
+                  height: 289px;
+                  user-select: none;
+                  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                  padding: 0px;
+                  margin: 0px;
+                  border-width: 0px;
+                "
+              ></canvas>
+            </div>
+            <div class=""></div>
+          </div>
+          <div class="sum">
+            <p>120,899</p>
+            <div class="tip">
+              <i></i>
+              <span>用户总量</span>
+            </div>
+            <p>248</p>
+            <div class="tip">
+              <i class="ms"></i>
+              <span>本月新增</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 rig">
+        <div class="title">
+          <div class="content">
+            <div class="head">
+              <span class="act">365天</span>
+              <i></i>
+              <span class="">90天</span>
+              <i></i>
+              <span>30天</span>
+              <i></i>
+              <span>24小时</span>
+            </div>
+            <div class="arrbox">
+              <div class="arr">
+                <p>20,301,987</p>
+                <span><i></i>订单数</span>
+              </div>
+              <div class="arr">
+                <p>99834</p>
+                <span><i class="ms"></i>销售额(万元)</span>
+              </div>
+            </div>
+          </div>
+          <img src="images/border.png" alt="" srcset="" />
+        </div>
+        <div class="main item-border">
+          <div class="echarts-box">
+            <div class="msgbox">
+              <p>销售额统计</p>
+              <i class="mid"></i>
+              <span>年</span>
+              <span>季</span>
+              <span>月</span>
+              <span class="act">周</span>
+            </div>
+            <div
+              class="echarts"
+              id="ec4"
+              _echarts_instance_="ec_1704423706595"
+              style="
+                user-select: none;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+              "
+            >
+              <div
+                style="
+                  position: relative;
+                  width: 384px;
+                  height: 236px;
+                  padding: 0px;
+                  margin: 0px;
+                  border-width: 0px;
+                  cursor: default;
+                "
+              >
+                <canvas
+                  data-zr-dom-id="zr_0"
+                  width="576"
+                  height="354"
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    width: 384px;
+                    height: 236px;
+                    user-select: none;
+                    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                    padding: 0px;
+                    margin: 0px;
+                    border-width: 0px;
+                  "
+                ></canvas>
+              </div>
+              <div class=""></div>
+            </div>
+          </div>
+        </div>
+        <div class="submain">
+          <div class="left item-border">
+            <div
+              class="echarts"
+              id="qdfb"
+              _echarts_instance_="ec_1704423706596"
+              style="
+                user-select: none;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                position: relative;
+              "
+            >
+              <div
+                style="
+                  position: relative;
+                  width: 192px;
+                  height: 185px;
+                  padding: 0px;
+                  margin: 0px;
+                  border-width: 0px;
+                  cursor: default;
+                "
+              >
+                <canvas
+                  data-zr-dom-id="zr_0"
+                  width="288"
+                  height="277"
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    width: 192px;
+                    height: 185px;
+                    user-select: none;
+                    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                    padding: 0px;
+                    margin: 0px;
+                    border-width: 0px;
+                  "
+                ></canvas>
+              </div>
+              <div
+                class=""
+                style="
+                  position: absolute;
+                  display: block;
+                  border-style: solid;
+                  white-space: nowrap;
+                  z-index: 9999999;
+                  box-shadow: rgba(0, 0, 0, 0.2) 1px 2px 10px;
+                  transition: opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0s,
+                    visibility 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0s,
+                    transform 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s;
+                  background-color: rgb(255, 255, 255);
+                  border-width: 1px;
+                  border-radius: 4px;
+                  color: rgb(102, 102, 102);
+                  font: 14px / 21px 'Microsoft YaHei';
+                  padding: 10px;
+                  top: 0px;
+                  left: 0px;
+                  transform: translate3d(-62px, -64px, 0px);
+                  border-color: rgb(255, 255, 255);
+                  pointer-events: none;
+                  visibility: hidden;
+                  opacity: 0;
+                "
+              >
+                <div style="margin: 0px 0 0; line-height: 1">
+                  <div
+                    style="
+                      font-size: 14px;
+                      color: #666;
+                      font-weight: 400;
+                      line-height: 1;
+                    "
+                  >
+                    渠道分布
+                  </div>
+                  <div style="margin: 10px 0 0; line-height: 1">
+                    <div style="margin: 0px 0 0; line-height: 1">
+                      <span
+                        style="
+                          display: inline-block;
+                          vertical-align: middle;
+                          margin-right: 8px;
+                          margin-left: 3px;
+                          border-radius: 4px;
+                          width: 4px;
+                          height: 4px;
+                          background-color: #fff;
+                        "
+                      ></span
+                      ><span
+                        style="
+                          font-size: 14px;
+                          color: #666;
+                          font-weight: 400;
+                          margin-left: 2px;
+                        "
+                        >机场</span
+                      ><span
+                        style="
+                          float: right;
+                          margin-left: 20px;
+                          font-size: 14px;
+                          color: #666;
+                          font-weight: 900;
+                        "
+                        >90</span
+                      >
+                      <div style="clear: both"></div>
+                    </div>
+                    <div style="margin: 10px 0 0; line-height: 1">
+                      <span
+                        style="
+                          display: inline-block;
+                          vertical-align: middle;
+                          margin-right: 8px;
+                          margin-left: 3px;
+                          border-radius: 4px;
+                          width: 4px;
+                          height: 4px;
+                          background-color: #fff;
+                        "
+                      ></span
+                      ><span
+                        style="
+                          font-size: 14px;
+                          color: #666;
+                          font-weight: 400;
+                          margin-left: 2px;
+                        "
+                        >商场</span
+                      ><span
+                        style="
+                          float: right;
+                          margin-left: 20px;
+                          font-size: 14px;
+                          color: #666;
+                          font-weight: 900;
+                        "
+                        >19</span
+                      >
+                      <div style="clear: both"></div>
+                    </div>
+                    <div style="margin: 10px 0 0; line-height: 1">
+                      <span
+                        style="
+                          display: inline-block;
+                          vertical-align: middle;
+                          margin-right: 8px;
+                          margin-left: 3px;
+                          border-radius: 4px;
+                          width: 4px;
+                          height: 4px;
+                          background-color: #fff;
+                        "
+                      ></span
+                      ><span
+                        style="
+                          font-size: 14px;
+                          color: #666;
+                          font-weight: 400;
+                          margin-left: 2px;
+                        "
+                        >火车站</span
+                      ><span
+                        style="
+                          float: right;
+                          margin-left: 20px;
+                          font-size: 14px;
+                          color: #666;
+                          font-weight: 900;
+                        "
+                        >54</span
+                      >
+                      <div style="clear: both"></div>
+                    </div>
+                    <div style="margin: 10px 0 0; line-height: 1">
+                      <span
+                        style="
+                          display: inline-block;
+                          vertical-align: middle;
+                          margin-right: 8px;
+                          margin-left: 3px;
+                          border-radius: 4px;
+                          width: 4px;
+                          height: 4px;
+                          background-color: #fff;
+                        "
+                      ></span
+                      ><span
+                        style="
+                          font-size: 14px;
+                          color: #666;
+                          font-weight: 400;
+                          margin-left: 2px;
+                        "
+                        >汽车站</span
+                      ><span
+                        style="
+                          float: right;
+                          margin-left: 20px;
+                          font-size: 14px;
+                          color: #666;
+                          font-weight: 900;
+                        "
+                        >11</span
+                      >
+                      <div style="clear: both"></div>
+                    </div>
+                    <div style="margin: 10px 0 0; line-height: 1">
+                      <span
+                        style="
+                          display: inline-block;
+                          vertical-align: middle;
+                          margin-right: 8px;
+                          margin-left: 3px;
+                          border-radius: 4px;
+                          width: 4px;
+                          height: 4px;
+                          background-color: #fff;
+                        "
+                      ></span
+                      ><span
+                        style="
+                          font-size: 14px;
+                          color: #666;
+                          font-weight: 400;
+                          margin-left: 2px;
+                        "
+                        >地铁</span
+                      ><span
+                        style="
+                          float: right;
+                          margin-left: 20px;
+                          font-size: 14px;
+                          color: #666;
+                          font-weight: 900;
+                        "
+                        >34</span
+                      >
+                      <div style="clear: both"></div>
+                    </div>
+                    <div style="clear: both"></div>
+                  </div>
+                  <div style="clear: both"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right item-border">
+            <div
+              class="echarts"
+              id="xsjd"
+              _echarts_instance_="ec_1704423706597"
+              style="
+                user-select: none;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                position: relative;
+              "
+            >
+              <div
+                style="
+                  position: relative;
+                  width: 192px;
+                  height: 185px;
+                  padding: 0px;
+                  margin: 0px;
+                  border-width: 0px;
+                  cursor: default;
+                "
+              >
+                <canvas
+                  data-zr-dom-id="zr_0"
+                  width="288"
+                  height="277"
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    width: 192px;
+                    height: 185px;
+                    user-select: none;
+                    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                    padding: 0px;
+                    margin: 0px;
+                    border-width: 0px;
+                  "
+                ></canvas>
+              </div>
+              <div class=""></div>
+            </div>
+            <div class="arrbox">
+              <div class="arr">
+                <p>1,321</p>
+                <span><i class="more"></i>销售额(万元)</span>
+              </div>
+              <div class="arr">
+                <p>150%</p>
+                <span><i class=""></i>同比增长<span> </span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="foot item-border">
+          <div class="title">
+            <div>全国热榜</div>
+            <div>各省热销</div>
+            <div class="mark">//近三十日//</div>
+          </div>
+          <div class="main">
+            <div class="left">
+              <div>
+                <i class="one"></i>
+                <span>可爱多</span>
+              </div>
+              <div>
+                <i class="two"></i>
+                <span>娃哈哈</span>
+              </div>
+              <div>
+                <i class="three"></i>
+                <span>喜之郎</span>
+              </div>
+            </div>
+            <div class="mid">
+              <div class="act">
+                <span>北京</span>
+                <span>25.179</span><i>&#xe616; </i>
+              </div>
+              <div>
+                <span>湖北</span>
+                <span>21.252</span><i class="fx">&#xe616; </i>
+              </div>
+              <div>
+                <span>上海</span>
+                <span>20.760</span><i>&#xe616; </i>
+              </div>
+              <div>
+                <span>江苏</span>
+                <span>21.252</span><i class="fx">&#xe616; </i>
+              </div>
+              <div>
+                <span>山东</span>
+                <span>20.760</span><i>&#xe616; </i>
+              </div>
+            </div>
+            <div class="right">
+              <dl>
+                <dd>
+                  <span>可爱多</span><span>2,345<i></i></span>
+                </dd>
+                <dd>
+                  <span>娃哈哈</span><span>7,109<i></i></span>
+                </dd>
+                </dd>
+                <dd>
+                  <span>喜之郎</span><span>3,701<i class="fx"></i></span>
+                </dd>
+                <dd>
+                  <span>八喜</span><span>6,080<i class="fx"></i></span>
+                </dd>
+                <dd>
+                  <span>小洋人</span><span>2,724<i class="fx"></i></span>
+                </dd>
+                <dd>
+                  <span>好多色</span><span>2998<i></i></span>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+
+<script src="base/bootstrap/jquery-3.7.1.min.js"></script>
+<script src="base/bootstrap/swiper/swiper-bundle.min.js"></script>
+<script src="base/bootstrap/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.js"></script>
+<!-- 项目JS -->
+<script src="base/js/base.js"></script>
+<script src="js/index.js"></script>
+<!-- echarts -->
+<script src="js/china.js"></script>
+
+<script src="js/map.js"></script>
+
+<script>
+  var chartDom = document.getElementById("ec1");
+  var myChart = echarts.init(chartDom);
+  var option;
+
+  option = {
+    title: {
+      text: "故障设备监控",
+      left: "left",
+      textStyle: {
+        color: "#f5f5f5", // 这里设置标题颜色
+      },
+    },
+    tooltip: {
+      trigger: "item",
+      formatter: "{a} <br/>{b} : {c} ({d}%)",
+    },
+    legend: {
+      left: "center",
+      top: "bottom",
+      data: [
+        "rose1",
+        "rose2",
+        "rose3",
+        "rose4",
+        "rose5",
+        "rose6",
+        "rose7",
+        "rose8",
+      ],
+    },
+    toolbox: {
+      show: true,
+      feature: {
+        mark: { show: false },
+        dataView: { show: false, readOnly: false },
+        restore: { show: false },
+        saveAsImage: { show: false },
+      },
+    },
+    series: [
+      {
+        name: "区域占比",
+        type: "pie",
+        radius: [10, 80],
+        center: ["50%", "50%"],
+        roseType: "area",
+        itemStyle: {
+          borderRadius: 5,
+        },
+        data: [
+          {
+            value: 20,
+            name: "云南",
+            itemStyle: { color: "#006af6" },
+            labelLine: { lineStyle: { color: "#006af6" } },
+            label: { color: "#006af6" },
+          },
+          {
+            value: 30,
+            name: "北京",
+            itemStyle: { color: "#60c998" },
+            labelLine: { lineStyle: { color: "#60c998" } },
+            label: { color: "#60c998" },
+          },
+          {
+            value: 30,
+            name: "山东",
+            itemStyle: { color: "#f2857f" },
+            labelLine: { lineStyle: { color: "#f2857f" } },
+            label: { color: "#f2857f" },
+          },
+          {
+            value: 30,
+            name: "湖北",
+            itemStyle: { color: "#fb9d86" },
+            labelLine: { lineStyle: { color: "#fb9d86" } },
+            label: { color: "#fb9d86" },
+          },
+          {
+            value: 20,
+            name: "江苏",
+            itemStyle: { color: "#0691fd" },
+            labelLine: { lineStyle: { color: "#0691fd" } },
+            label: { color: "#0691fd" },
+          },
+          {
+            value: 40,
+            name: "浙江",
+            itemStyle: { color: "#9de4b7" },
+            labelLine: { lineStyle: { color: "#9de4b7" } },
+            label: { color: "#9de4b7" },
+          },
+          {
+            value: 45,
+            name: "四川",
+            itemStyle: { color: "#30c5e5" },
+            labelLine: { lineStyle: { color: "#30c5e5" } },
+            label: { color: "#30c5e5" },
+          },
+          {
+            value: 60,
+            name: "湖北",
+            itemStyle: { color: "#1c9cfe" },
+            labelLine: { lineStyle: { color: "#1c9cfe" } },
+            label: { color: "#1c9cfe" },
+          },
+        ],
+      },
+    ],
+  };
+
+  option && myChart.setOption(option);
+</script>
+
+<script>
+  var chartDom = document.getElementById("ec2");
+  var myChart = echarts.init(chartDom);
+  var option;
+
+  option = {
+    title: {
+      text: "全国用户总量统计",
+      left: "left",
+      textStyle: {
+        color: "#f5f5f5", // 这里设置标题颜色
+      },
+    },
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "shadow",
+      },
+    },
+    grid: {
+      left: "3%",
+      right: "4%",
+      bottom: "3%",
+      containLabel: true,
+    },
+    xAxis: [
+      {
+        type: "category",
+        data: [
+          "上海",
+          "",
+          "北京",
+          "",
+          "合肥",
+          "",
+          "——",
+          "",
+          "杭州",
+          "",
+          "济南",
+          "",
+          "重庆",
+        ],
+        axisTick: {
+          alignWithLabel: false, // 将 alignWithLabel 设置为 false
+        },
+        axisLabel: {
+          interval: 0,
+          // rotate: 45,
+        },
+      },
+    ],
+
+    yAxis: [
+      {
+        type: "value",
+        splitLine: {
+          show: true, // 显示分隔线
+          lineStyle: {
+            color: ["rgba(111 165 230 / 60%)"], // 分隔线颜色，可以是数组
+            width: 1, // 分隔线宽度
+            type: "solid", // 分隔线类型
+          },
+        },
+      },
+    ],
+    series: [
+      {
+        name: "用户总量",
+        type: "bar",
+        barWidth: "60%",
+        data: [
+          2200, 1912, 1800, 1650, 1490, 1250, 1250, 1250, 930, 750, 490, 300,
+          200,
+        ],
+        itemStyle: {
+          color: function (params) {
+            // Check if the index is 5, 6, or 7, and set a specific color
+            if ([5, 6, 7].includes(params.dataIndex)) {
+              return "#224064";
+            } else {
+              // Set a linear gradient color with sky blue at the top and blue at the bottom
+              return new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "#08eff9" },
+                { offset: 1, color: "#0265d0" },
+              ]);
+            }
+          },
+        },
+        label: {
+          // show: true,
+          position: "top", // 文字显示在柱体上方
+          color: "#ffffff", // 文字颜色
+        },
+      },
+    ],
+  };
+
+  option && myChart.setOption(option);
+</script>
+
+<script>
+  var chartDom = document.getElementById("ec4");
+  var myChart = echarts.init(chartDom);
+  var option;
+
+  option = {
+    title: {},
+    tooltip: {
+      trigger: "axis",
+    },
+    legend: {
+      top: "10%",
+      data: ["实际销售额", "预期销售额"],
+      textStyle: {
+        color: "cornflowerblue",
+      },
+    },
+    xAxis: {
+      type: "category",
+      data: [
+        "一月",
+        "",
+        "三月",
+        "",
+        "五月",
+        "",
+        "七月",
+        "",
+        "九月",
+        "",
+        "十一月",
+      ],
+      axisLabel: {
+        textStyle: {
+          color: "#7d9bd1",
+        },
+      },
+    },
+    yAxis: {
+      type: "value",
+      axisLabel: {
+        textStyle: {
+          color: "#7d9bd1",
+        },
+      },
+      splitLine: {
+        show: true, // 显示分隔线
+        lineStyle: {
+          color: ["rgba(111 165 230 / 30%)"], // 分隔线颜色，可以是数组
+          width: 1, // 分隔线宽度
+          type: "solid", // 分隔线类型
+        },
+      },
+    },
+    series: [
+      {
+        name: "预期销售额",
+        data: [88, 120, 100, 115, 122, 80, 110, 90, 122, 85, 88, 95],
+        type: "line",
+        smooth: true,
+        itemStyle: {
+          color: "#e86262",
+        },
+      },
+      {
+        name: "实际销售额",
+        type: "line",
+        smooth: true,
+        data: [34, 62, 50, 57.5, 61.25, 35, 55, 45, 65, 42.5, 44, 42.5],
+        itemStyle: {
+          color: "#83d6c2",
+        },
+      },
+    ],
+  };
+
+  option && myChart.setOption(option);
+</script>
+
+<script>
+  var chartDom = document.getElementById("qdfb");
+  var myChart = echarts.init(chartDom);
+  var option;
+
+  option = {
+    title: {
+      text: "渠道分部",
+      top: "1%",
+      left: "3%",
+      textStyle: {
+        color: "#fff",
+        fontWeight: "lighter",
+      },
+    },
+    tooltip: {
+      trigger: "axis",
+    },
+    radar: {
+      center: ["50%", "55%"], // 居中雷达图
+      radius: "50%", // 设置半径以使图表变小
+      shape: "circle", // 设置雷达图形状为圆形
+      itemStyle: {
+        color: "red",
+      },
+      indicator: [
+        { name: "机场", max: 100 },
+        { name: "商场", max: 100 },
+        { name: "火车站", max: 100 },
+        { name: "汽车站", max: 100 },
+        { name: "地铁", max: 100 },
+      ],
+      indicatorStyle: {
+        textStyle: {
+          color: "#000000", // 设置所有文字颜色为黑色
+        },
+      },
+      splitArea: {
+        areaStyle: {
+          color: ["#ffffff00", "#ffffff00"], // 设置背景颜色，可以使用渐变色
+        },
+      },
+    },
+    series: [
+      {
+        name: "Budget vs spending",
+        type: "radar",
+        tooltip: {
+          trigger: "item",
+        },
+        areaStyle: {
+          color: "#ffe8a9d6",
+        },
+        data: [
+          {
+            value: [90, 19, 54, 11, 34],
+            name: "渠道分布",
+            label: {
+              show: true,
+              formatter: function (params) {
+                return params.value; // 显示数据值
+              },
+              position: "top",
+              textStyle: {
+                color: "fff", // 设置标签文字颜色为白色
+              },
+            },
+            itemStyle: {
+              color: "#fff", // 设置数据点颜色
+            },
+            symbol: "circle", // 设置数据点的形状为圆形
+            symbolSize: 4, // 设置数据点的大小
+            emphasis: {
+              symbolSize: 10, // 设置鼠标悬停时数据点的大小
+            },
+          },
+        ],
+      },
+    ],
+  };
+
+  option && myChart.setOption(option);
+</script>
+
+<script>
+  var myChart = echarts.init(document.getElementById("xsjd"));
+  var option = {
+    title: {
+      text: "一季度销售进度",
+      top: "2%",
+      left: "3%",
+      textStyle: {
+        color: "#fff",
+        fontSize: 16,
+        fontWeight: "lighter",
+      },
+    },
+    tooltip: {
+      formatter: "当前销售额: {c}",
+    },
+    series: [
+      {
+        type: "gauge",
+        startAngle: 180,
+        endAngle: 0,
+        min: 0,
+        max: 2000, // 修改为销售额上限
+        splitNumber: 12,
+        center: ["50%", "58%"],
+        itemStyle: {
+          color: "#58D9F9",
+          shadowColor: "rgba(0,138,255,0.45)",
+          shadowBlur: 10,
+          shadowOffsetX: 2,
+          shadowOffsetY: 2,
+        },
+        progress: {
+          show: true,
+          roundCap: true,
+          width: 18,
+        },
+        axisLine: {
+          roundCap: true,
+          lineStyle: {
+            width: 18,
+          },
+        },
+        axisTick: {
+          show: false,
+        },
+        splitLine: {
+          show: false,
+        },
+        axisLabel: {
+          show: false,
+          distance: 30,
+          color: "#999",
+          fontSize: 20,
+        },
+        detail: {
+          backgroundColor: "transparent",
+          borderColor: "#999",
+          borderWidth: 0,
+          width: "60%",
+          lineHeight: 40,
+          height: 40,
+          borderRadius: 8,
+          offsetCenter: [0, -10],
+          formatter: function (value) {
+            return ((value / 2000) * 100).toFixed(0) + "%";
+          },
+          textStyle: {
+            fontSize: 20,
+            color: "#fff",
+          },
+        },
+        pointer: false,
+        data: [
+          {
+            value: 1321,
+          },
+        ],
+      },
+    ],
+  };
+
+  myChart.setOption(option);
+</script>
