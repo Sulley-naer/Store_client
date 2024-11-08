@@ -53,7 +53,7 @@ npm run test:e2e -- tests/e2e/example.ts
 # Runs the tests in debug mode
 npm run test:e2e -- --debug
 ```
-    
+
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh

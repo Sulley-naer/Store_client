@@ -13,7 +13,7 @@ export const useMyDefaultStore = defineStore({
     Actives: useStorage('Active', -1),
     Admin: useStorage('Admin', ''),
     AdChunk: useStorage('AdminPwd', 0),
-    Order:useStorage('order',ref({}))
+    Order: ref({})
   }),
   getters: {
     getUsername: (state) => state.user,
@@ -22,7 +22,7 @@ export const useMyDefaultStore = defineStore({
     getActives: (state) => state.Actives,
     getAdmin: (state) => state.Admin,
     getAdChunk: (state) => state.AdChunk,
-    getOrder: (state) => state.Order,
+    getOrder: (state) => state.Order
   },
   actions: {
     setUsername(newUsername: any) {
@@ -43,7 +43,7 @@ export const useMyDefaultStore = defineStore({
     setAdChunk(newPwd: number) {
       this.AdChunk = newPwd as number
     },
-    setOrder(newOrder:any ) {
+    setOrder(newOrder: any) {
       this.Order = newOrder
     },
     async fetchUsername() {

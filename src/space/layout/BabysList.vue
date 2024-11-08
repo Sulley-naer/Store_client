@@ -10,7 +10,7 @@
           <span v-if="Data.length == 1">店铺：{{ item.belong }}</span>
           <span v-else> 商场Logo </span>
           <span style="float: right">
-            <el-tag v-if="item.status" type="success">已付款</el-tag>
+            <el-tag v-if="item.status" type="warning">待发货</el-tag>
             <el-tag
               v-if="!item.status"
               type="danger"
@@ -72,7 +72,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, Ref, ref } from 'vue'
+import { onMounted, Ref, ref, watch } from 'vue'
 import { useMyDefaultStore } from '../../stores/counter'
 import axios from 'axios'
 import router from '../../router'
@@ -81,6 +81,12 @@ const store = useMyDefaultStore()
 
 const page = defineModel('page')
 const total = defineModel('total')
+const activeMenu = defineModel('activeMenu')
+
+watch(activeMenu, (val) => {
+  activeMenu.value = val
+  GetData()
+})
 
 interface Order {
   ID: number
@@ -107,16 +113,23 @@ const GetData = () => {
   axios
     .post('/GetOrderHistory', {
       username: store.getUsername,
-      page: page.value
+      page: page.value,
+      type: activeMenu.value
     })
     .then((res) => {
+      ProductList.value = []
+
       Data.value = res.data.data
       total.value = res.data.total
       Data.value.forEach((item) => {
         babyRegex(item.baby, ProductList.value)
       })
+
+      console.clear()
+
       console.log('Data:', Data.value)
       console.log('ProductList:', ProductList.value)
+
       GetBabys()
     })
 }
@@ -175,17 +188,33 @@ interface BabyObj {
 }
 
 const Babys = ref<BabyObj[]>([])
+const BYSus = ref<boolean | ['wait', 'complete']>(false)
 
+//TODO：垃圾检测，后续增加选项时失效。
 const GetBabys = () => {
   const list = new Set(IdList.value)
-  axios
-    .post('/OrderBabyList', {
-      babys: [...list]
-    })
-    .then((res) => {
-      console.log('Babys: ', res.data)
-      Babys.value = res.data
-    })
+
+  if (BYSus.value == true) {
+    console.log('数据已经全部拿取完成')
+
+    return ''
+  } else {
+    BYSus.value = activeMenu.value == 'All' ? true : BYSus.value
+
+    axios
+      .post('/OrderBabyList', {
+        babys: [...list]
+      })
+      .then((res) => {
+        console.log('Babys: ', res.data)
+        Babys.value = res.data
+        BYSus.value = BYSus.value == true ? BYSus.value : (activeMenu.value as ['wait', 'complete'])
+      })
+  }
+
+  if (typeof BYSus.value != 'boolean') {
+    BYSus.value = BYSus.value != activeMenu.value
+  }
 }
 
 //解决通过行内Js拿取Baby值，Vue抛精度异常问题
