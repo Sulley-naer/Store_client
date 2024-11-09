@@ -28,7 +28,7 @@
         </el-select>
       </el-form-item>
     </div>
-    <el-form-item label="年龄" prop="age">
+    <el-form-item label="年龄" prop="age" v-show="false">
       <el-form-item label="" prop="age" style="width: 100%">
         <el-select-v2 v-model="ruleForm.age" placeholder="年龄" :options="ages" />
       </el-form-item>
@@ -93,6 +93,7 @@ const mode = ref('login')
 const centerDialogVisible = ref(false)
 const msg = ref(false)
 const ruleFormRef = ref<FormInstance>()
+
 const checkAge = (rule: any, value: any, callback: any) => {
   if (!value) {
     return callback(new Error('Please input the age'))
@@ -109,22 +110,22 @@ const checkAge = (rule: any, value: any, callback: any) => {
     }
   }, 1000)
 }
+
 const validatePass = (rule: any, value: any, callback: any) => {
   if (value === '') {
+    console.log('全部：密码未通过')
     callback(new Error('请输入密码'))
   } else {
-    if (ruleForm.value.checkPass !== '') {
-      if (!ruleFormRef.value) return
-      ruleFormRef.value.validateField('checkPass')
-    }
     callback()
   }
 }
+
 const validatePass2 = (rule: any, value: any, callback: any) => {
   if (mode.value === 'reg') {
-    if (value === '') {
-      callback(new Error('请输入密码'))
-    } else if (value !== ruleForm.value.pass) {
+    if (value === '' || value.length <= 6) {
+      console.log('注册：二次密码未通过')
+      callback(new Error('密码不符合规范'))
+    } else if (value !== ruleForm.value.checkPass) {
       callback(new Error('密码不一致'))
     } else {
       callback()
@@ -133,12 +134,12 @@ const validatePass2 = (rule: any, value: any, callback: any) => {
     callback()
   }
 }
-const validateName = (rule: any, value: string, callback: any) => {
+
+const NameCheack = (rule: any, value: any, callback: any) => {
   if (mode.value === 'reg') {
-    if (!value) {
-      callback(new Error('请输入姓名'))
-    } else if (value.length < 2) {
-      callback(new Error('请输入正确姓名'))
+    if (value === '' || value.length < 2) {
+      console.log('注册：用户名未通过')
+      callback(new Error('用户名不符合规范'))
     } else {
       callback()
     }
@@ -146,10 +147,12 @@ const validateName = (rule: any, value: string, callback: any) => {
     callback()
   }
 }
+
 const validateGender = (rule: any, value: any, callback: any) => {
   if (mode.value === 'reg') {
     if (!value) {
       callback(new Error('请选择'))
+      console.log('注册：性别未选择')
     } else {
       callback()
     }
@@ -172,15 +175,16 @@ const ruleForm = ref(
 const rules = reactive<FormRules<typeof ruleForm>>({
   user: [
     { required: true, message: '请输入账户', trigger: 'blur' },
-    { min: 3, max: 15, message: '最低长度3，最大长度15', trigger: 'blur' }
+    { min: 3, max: 15, message: '最低长度3,最大长度15', trigger: 'blur' }
   ],
-  name: [{ validator: validatePass, trigger: 'blur' }],
-  pwd: [{ validator: validatePass2, trigger: 'blur' }],
-  tupe: [{ validator: checkAge, trigger: 'blur' }],
-  gender: [{ validator: validateGender, trigger: 'change' }],
-  name: [{ validator: validateName, trigger: 'blur' }]
+  name: [{ validator: NameCheack, trigger: 'blur' }],
+  pass: [{ validator: validatePass, trigger: 'blur' }],
+  checkPass: [{ validator: validatePass2, trigger: 'blur' }],
+  // age: [{ validator: checkAge, trigger: 'blur' }],
+  gender: [{ validator: validateGender, trigger: 'change' }]
 })
 
+//TODO : 后续使用Token保持登录状态
 function SaveStatus() {
   //创建cookie
   cookieStore
@@ -233,6 +237,7 @@ const register = () => {
     })
   centerDialogVisible.value = true
 }
+
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
 
