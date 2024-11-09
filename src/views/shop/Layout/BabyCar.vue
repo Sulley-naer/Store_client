@@ -3,7 +3,7 @@ import { onMounted, ref, watch } from 'vue'
 import { Delete, Search, ShoppingBag } from '@element-plus/icons-vue'
 import axios from 'axios'
 import { useMyDefaultStore } from '@/stores/counter'
-import { ElNotification } from 'element-plus'
+import { ElMessage, ElNotification } from 'element-plus'
 import Router from '@/router'
 import router from '@/router'
 
@@ -32,25 +32,24 @@ const GetData = () => {
 }
 //?添加商品废弃 api
 const sendCar = (id: string, total: number) => {
-  if(total>0){
+  if (total > 0) {
     axios
-    .post('/AddBabyCar', {
-      account: store.getUsername,
-      item: id,
-      count: total
-    })
-    .then((res) => {
-      console.log(res.data)
-    })
-    .catch(() => {
-      ElNotification({
-        title: 'Warning',
-        message: '已达最大购买数',
-        type: 'warning'
+      .post('/AddBabyCar', {
+        account: store.getUsername,
+        item: id,
+        count: total
       })
-    })
-  }
-  else{
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch(() => {
+        ElNotification({
+          title: 'Warning',
+          message: '已达最大购买数',
+          type: 'warning'
+        })
+      })
+  } else {
     RemoveCar(id, total)
   }
 }
@@ -128,14 +127,14 @@ const placeAnOrder = () => {
       baby: baby.value
     })
     .then((res) => {
-      if (res.data!=null) {
+      if (res.data != null) {
         ElNotification({
           title: 'success',
           message: '订单生成',
           type: 'success'
         })
-        store.setOrder(ref(res.data));
-        Router.push({name:'pay'})
+        store.setOrder(res.data)
+        Router.push({ name: 'pay' })
       } else {
         ElNotification({
           title: 'error',
@@ -143,6 +142,9 @@ const placeAnOrder = () => {
           type: 'error'
         })
       }
+    })
+    .catch(() => {
+      ElMessage.error('订单已经存在')
     })
 }
 </script>
@@ -165,7 +167,7 @@ const placeAnOrder = () => {
       <el-scrollbar>
         <el-main>
           <el-card
-            style="max-width: 480px;min-width: 25vw;z-index: 5"
+            style="max-width: 480px; min-width: 25vw; z-index: 5"
             shadow="hover"
             class="card"
             v-for="item in UserCar"
@@ -183,7 +185,9 @@ const placeAnOrder = () => {
                     alt="banner"
                   />
                 </el-aside>
-                <el-container :style="{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }" >
+                <el-container
+                  :style="{ textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }"
+                >
                   <el-header @click.stop style="height: 3em"
                     ><h3>{{ item.city }} · {{ item.name }}</h3></el-header
                   >
@@ -215,13 +219,15 @@ const placeAnOrder = () => {
                           type="danger"
                           :icon="Delete"
                           circle
-                          @click.stop="item.active=0, RemoveCar(item.id, item.active)"
+                          @click.stop="(item.active = 0), RemoveCar(item.id, item.active)"
                           v-show="item.active > 0"
                         />
                       </span>
-                      <span id="add" style="right: unset;left: 6em">
-                        <el-tag type="info" v-if='item.selectedStyle=="default"'>{{item.selectedStyle=="default"?"默认":item.selectedStyle}}</el-tag>
-                        <el-tag type="success" v-else >{{item.selectedStyle}}</el-tag>
+                      <span id="add" style="right: unset; left: 6em">
+                        <el-tag type="info" v-if="item.selectedStyle == 'default'">{{
+                          item.selectedStyle == 'default' ? '默认' : item.selectedStyle
+                        }}</el-tag>
+                        <el-tag type="success" v-else>{{ item.selectedStyle }}</el-tag>
                       </span>
                     </div>
                   </el-footer>

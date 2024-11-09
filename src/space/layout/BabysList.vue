@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-text-v-html-on-component -->
 <template>
   <div>
     <el-card
@@ -27,43 +28,66 @@
       </template>
 
       <template #default>
-        <el-card v-for="(item, k) in ProductList[index].id" :key="index" style="margin-top: 1em">
-          <el-container>
-            <el-aside width="200px" style="display: flex; justify-content: space-around">
-              <img
-                style="margin-inline: auto"
-                height="200px"
-                :src="getBabyById(item)?.photo"
-                :alt="getBabyById(item)?.name"
-            /></el-aside>
-            <el-main style="position: relative">
-              <p style="margin-bottom: 1em">商品名称：{{ getBabyById(item)?.name }}</p>
-              <p style="margin-bottom: 1em">商品城市：{{ getBabyById(item)?.city }}</p>
-              <p style="margin-bottom: 1em">商品店铺：{{ getBabyById(item)?.belongs }}</p>
-              <br />
-              <p>
-                商品数量：<el-tag>{{ ProductList[index].quantity[k] }}</el-tag>
-              </p>
-              <div style="position: absolute; top: 0; right: 2%">
-                <el-button type="primary" @click="router.push('/Detail/' + getBabyById(item)?.id)"
-                  >查看详情</el-button
-                >
-              </div>
-            </el-main>
-          </el-container>
-        </el-card>
+        <el-collapse accordion>
+          <el-collapse-item :name="item.ID">
+            <template #title>
+              订单号：
+              {{ item.orderNumber }}
+            </template>
+            <el-card
+              v-for="(baby, k) in ProductList[index].id"
+              :key="index"
+              style="margin-top: 1em"
+            >
+              <el-container>
+                <el-aside width="200px" style="display: flex; justify-content: space-around">
+                  <img
+                    style="margin-inline: auto"
+                    height="200px"
+                    :src="getBabyById(baby)?.photo"
+                    :alt="getBabyById(baby)?.name"
+                /></el-aside>
+                <el-main style="position: relative">
+                  <p style="margin-bottom: 1em">商品名称：{{ getBabyById(baby)?.name }}</p>
+                  <p style="margin-bottom: 1em">商品城市：{{ getBabyById(baby)?.city }}</p>
+                  <p style="margin-bottom: 1em">商品店铺：{{ getBabyById(baby)?.belongs }}</p>
+                  <p style="margin-bottom: 1em">
+                    商品款式：<el-tag type="success">{{ ProductList[index].style[k] }} </el-tag>
+                  </p>
+                  <br />
+                  <p>
+                    商品数量：<el-tag>{{ ProductList[index].quantity[k] }}</el-tag>
+                  </p>
+                  <div style="position: absolute; top: 0; right: 2%">
+                    <el-button
+                      type="primary"
+                      @click="router.push('/Detail/' + getBabyById(baby)?.id)"
+                      v-text="'查看详情'"
+                    />
+                    <el-button
+                      type="danger"
+                      v-text="`申请退款`"
+                      @click="refund(baby)"
+                      v-if="false"
+                    />
+                  </div>
+                </el-main>
+              </el-container>
+            </el-card>
+          </el-collapse-item>
+        </el-collapse>
       </template>
 
       <template #footer>
         <div style="display: flex; justify-content: space-between; align-items: center">
-          <span style="margin-right: 1px">
-            订单号：
-            {{ item.orderNumber }}
-          </span>
           <span style="float: right">
             订单时间：
             {{ item.time.toString().split('T')[0] }}
             {{ item.time.toString().split('T')[1].split('.')[0] }}
+          </span>
+          <span>
+            <el-button v-if="item.status" type="danger" v-text="`申请退款`" @click="refund(item)" />
+            <el-button v-else type="war" v-text="`取消订单`" @click="cancelOrder(item)" />
           </span>
         </div>
       </template>
@@ -76,6 +100,7 @@ import { onMounted, Ref, ref, watch } from 'vue'
 import { useMyDefaultStore } from '../../stores/counter'
 import axios from 'axios'
 import router from '../../router'
+import { ElMessage } from 'element-plus'
 
 const store = useMyDefaultStore()
 
@@ -190,7 +215,7 @@ interface BabyObj {
 const Babys = ref<BabyObj[]>([])
 const BYSus = ref<boolean | ['wait', 'complete']>(false)
 
-//TODO：垃圾检测，后续增加选项时失效。
+//TODO：垃圾检测，后续增加选项时失效,添加变量解决
 const GetBabys = () => {
   const list = new Set(IdList.value)
 
@@ -220,6 +245,34 @@ const GetBabys = () => {
 //解决通过行内Js拿取Baby值，Vue抛精度异常问题
 function getBabyById(id) {
   return this.Babys.find((baby) => baby.id == id)
+}
+
+//取消订单
+
+const cancelOrder = (order) => {
+  console.log(order)
+  axios
+    .post('deleteOrder', {
+      ID: order.ID
+    })
+    .then((res) => {
+      console.log(res.data)
+      if (res) {
+        ElMessage.success('订单取消成功')
+        Data.value = Data.value.filter((item) => item.ID != order.ID)
+      } else {
+        ElMessage.error('订单取消失败')
+      }
+    })
+    .catch((err) => {
+      ElMessage.error(err.message)
+    })
+}
+
+//TODO 退款逻辑
+
+const refund = (order) => {
+  console.log('退款逻辑')
 }
 
 onMounted(() => {

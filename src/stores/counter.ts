@@ -13,7 +13,7 @@ export const useMyDefaultStore = defineStore({
     Actives: useStorage('Active', -1),
     Admin: useStorage('Admin', ''),
     AdChunk: useStorage('AdminPwd', 0),
-    Order: ref({})
+    Order: useStorage('Order', {})
   }),
   getters: {
     getUsername: (state) => state.user,
