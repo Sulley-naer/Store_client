@@ -11,9 +11,15 @@
           <span v-if="Data.length == 1">店铺：{{ item.belong }}</span>
           <span v-else> 商场Logo </span>
           <span style="float: right">
-            <el-tag v-if="item.status" type="warning">待发货</el-tag>
+            <el-tag v-if="item.refund === `待处理`" type="info"> 退款中 </el-tag>
             <el-tag
-              v-if="!item.status"
+              v-else-if="item.handling_number == 2 || item.handling_number == 4"
+              type="warning"
+              >退款: {{ item.refund }}
+            </el-tag>
+            <el-tag v-else-if="item.status" type="warning">待发货</el-tag>
+            <el-tag
+              v-else-if="!item.status"
               type="danger"
               @click="
                 () => {
@@ -86,7 +92,22 @@
             {{ item.time.toString().split('T')[1].split('.')[0] }}
           </span>
           <span>
-            <el-button v-if="item.status" type="danger" v-text="`申请退款`" @click="refund(item)" />
+            <el-button
+              v-if="item.status"
+              type="danger"
+              v-text="`申请退款`"
+              @click="refund(item)"
+              :disabled="
+                item.handling_number == 1 || item.handling_number == 3 || item.refund == `成功`
+              "
+            />
+            <el-button
+              v-if="item.status"
+              type="danger"
+              v-text="`取消退款`"
+              @click="cancelRefund(item)"
+              :disabled="item.refund != `待处理`"
+            />
             <el-button v-else type="war" v-text="`取消订单`" @click="cancelOrder(item)" />
           </span>
         </div>
@@ -121,6 +142,8 @@ interface Order {
   time: string
   status: boolean
   logistics: string
+  refund: ['待处理', '未开启', '成功', '失败']
+  handling_number: number
 }
 
 const Data = ref([]) as any as Ref<Order[]>
@@ -269,10 +292,44 @@ const cancelOrder = (order) => {
     })
 }
 
-//TODO 退款逻辑
+//退款逻辑
 
 const refund = (order) => {
-  console.log('退款逻辑')
+  axios
+    .post('/StratRefund', {
+      orderNumber: order.orderNumber
+    })
+    .then((res) => {
+      console.log(res.data)
+      if (res.data) {
+        ElMessage.success('申请退款成功')
+      } else {
+        ElMessage.error('申请退款失败')
+      }
+      GetData()
+    })
+    .catch((err) => {
+      ElMessage.error(err.message)
+    })
+}
+
+const cancelRefund = (order) => {
+  axios
+    .post('/cancelRefund', {
+      orderNumber: order.orderNumber
+    })
+    .then((res) => {
+      console.log(res.data)
+      if (res.data) {
+        ElMessage.success('取消退款成功')
+      } else {
+        ElMessage.error('取消退款失败')
+      }
+      GetData()
+    })
+    .catch((err) => {
+      ElMessage.error(err.response.data.Message)
+    })
 }
 
 onMounted(() => {

@@ -16,6 +16,7 @@
   ],
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "shims.d.ts"],
   "compilerOptions": {
+    "jsx": "react",
     "downlevelIteration": true,
     "moduleResolution": "node",
     "module": "commonjs",

@@ -1,16 +1,21 @@
 <template>
   <div style="height: 550px">
-    <div class="mid" style='margin-bottom: 1em;margin-inline: auto;width: max-content;'>
+    <div class="mid" style="margin-bottom: 1em; margin-inline: auto; width: max-content">
       <el-input
-        style="width: 50vw;height: 2.3vw"
+        style="width: 50vw; height: 2.3vw"
         size="large"
         placeholder="请输入关键词"
-        v-model='query'
+        v-model="query"
         @change="searcher()"
-        @keydown='searcher()'
+        @keydown="searcher()"
       >
         <template #prepend>
-          <el-select v-model="selector" placeholder="type" style="width: 115px;background: transparent" size='large'>
+          <el-select
+            v-model="selector"
+            placeholder="type"
+            style="width: 115px; background: transparent"
+            size="large"
+          >
             <el-option label="城市" value="city" />
             <el-option label="类型" value="type" />
             <el-option label="商家" value="belong" />
@@ -18,7 +23,7 @@
           </el-select>
         </template>
         <template #append>
-          <el-button :icon="Search" size='large' @click='searcher()'/>
+          <el-button :icon="Search" size="large" @click="searcher()" />
         </template>
       </el-input>
     </div>
@@ -27,8 +32,13 @@
         <el-table-v2 :columns="columns" :data="data" :width="width" :height="height" fixed />
       </template>
     </el-auto-resizer>
-    <footer style='width: max-content;margin-inline: auto;margin-top: 2em;'>
-      <el-pagination layout="prev, pager, next" :total="total" v-model:current-page='page' @change='query===""?GetBaby():searcher()'/>
+    <footer style="width: max-content; margin-inline: auto; margin-top: 2em">
+      <el-pagination
+        layout="prev, pager, next"
+        :total="total"
+        v-model:current-page="page"
+        @change="query === '' ? GetBaby() : searcher()"
+      />
     </footer>
   </div>
 </template>
@@ -71,7 +81,7 @@ const update = (item: any) => {
       type: item.type,
       city: item.city,
       photo: item.photo,
-      attribute:item.attribute
+      attribute: item.attribute
     })
     .then((res) => {
       if (res.data) {
@@ -95,22 +105,25 @@ const update = (item: any) => {
 
 const query = ref()
 
-const selector = ref("name")
+const selector = ref('name')
 
 const searcher = () => {
+  console.clear()
   console.log(query.value)
-  axios.post("/GetBabyList",{
-    city: selector.value=="city"?query.value:null,
-    type: selector.value=="type"?query.value:null,
-    belongs: selector.value=="belong"?query.value:null,
-    name: selector.value=="name"?query.value:null,
-    mode: "search",
-    page: page.value
-  }).then(res=>{
-    data.value = res.data
-    console.log(res.data)
-    GetTotal()
-  })
+  axios
+    .post('/GetBabyList', {
+      city: selector.value == 'city' ? query.value : null,
+      type: selector.value == 'type' ? query.value : null,
+      belongs: selector.value == 'belong' ? query.value : null,
+      name: selector.value == 'name' ? query.value : null,
+      mode: 'search',
+      page: page.value
+    })
+    .then((res) => {
+      data.value = res.data
+      console.log(res.data)
+      GetTotal()
+    })
 }
 
 //分页
@@ -118,9 +131,9 @@ const searcher = () => {
 const page = ref(1)
 const total = ref(10)
 
-const GetTotal = ()=>{
-  axios.post('/GetTotalBabyPages').then((res)=>{
-    total.value=res.data
+const GetTotal = () => {
+  axios.post('/GetTotalBabyPages').then((res) => {
+    total.value = res.data
     console.log(res.data)
   })
 }
@@ -251,7 +264,7 @@ const columns: Column<any>[] = [
         {
           label: '本地生活',
           value: '本地生活'
-        },
+        }
       ])
 
       return (
@@ -283,7 +296,7 @@ const columns: Column<any>[] = [
         {
           label: '虚拟物品',
           value: 'virtual'
-        },
+        }
       ])
 
       return (
@@ -346,18 +359,20 @@ const data = ref([
     address: '重庆市南岸区海棠溪',
     price: 80,
     type: '演出',
-    belongs: '123456',
+    belongs: '123456'
   }
 ])
 
 // 获取数据
 const GetBaby = () => {
-  axios.post('/CustomerBaby',{
-    page:page.value
-  }).then((res) => {
-    data.value = res.data
-    console.log(res.data)
-  })
+  axios
+    .post('/CustomerBaby', {
+      page: page.value
+    })
+    .then((res) => {
+      data.value = res.data
+      console.log(res.data)
+    })
   GetTotal()
 }
 

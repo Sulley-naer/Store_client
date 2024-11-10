@@ -4,7 +4,6 @@ import { watch, ref, onActivated } from 'vue'
 import { Back } from '@element-plus/icons-vue'
 import axios from 'axios'
 import { ElNotification } from 'element-plus'
-import { set } from 'js-cookie'
 
 const props = defineProps<{
   viewObject: object
@@ -21,12 +20,12 @@ const style = ref([])
 
 const result = ref([])
 
-
 watch(view, (newValue) => {
   view.value = newValue
 })
 
 function initVar() {
+  console.clear()
   console.log('________________________')
   console.log('当前行商品集合:', Data.value[props.column])
   // console.log(props.viewObject)
@@ -39,36 +38,36 @@ function initVar() {
 
   babyRegex(Data.value[props.column].baby)
 
-  console.log("添加完毕",babyList.value)
+  console.log('添加完毕', babyList.value)
 
   GetBaby()
 }
 
-const babyRegex = (item:string)=>{
+const babyRegex = (item: string) => {
   console.log(item)
 
-  const regex = /(\d+)\+(\d+):([^\s;]+)/g;
-  const result = [];
-  let match;
+  const regex = /(\d+)\+(\d+):([^\s;]+)/g
+  const result = []
+  let match
 
-// 循环匹配所有组
+  // 循环匹配所有组
   while ((match = regex.exec(item)) !== null) {
     result.push({
-      id: match[1],      // 商品ID
+      id: match[1], // 商品ID
       quantity: match[2], // 数量
-      style: match[3]     // 款式
-    });
+      style: match[3] // 款式
+    })
   }
 
-  babyList.value = result.map(product => product.id);
-  sumList.value = result.map(product => product.quantity);
-  style.value = result.map(product => product.style);
+  babyList.value = result.map((product) => product.id)
+  sumList.value = result.map((product) => product.quantity)
+  style.value = result.map((product) => product.style)
 
   console.log('----------------------------')
 }
 const GetBaby = () => {
   axios
-    .post('/OrderBabyList', { babys:babyList.value } )
+    .post('/OrderBabyList', { babys: babyList.value })
     .then((res) => {
       console.log(res.data)
       result.value = res.data
@@ -104,7 +103,7 @@ watch(
   }
 )
 
-onActivated(()=>{
+onActivated(() => {
   initVar()
 })
 
@@ -119,23 +118,27 @@ console.log('图片地址', photoPath.value)
 <template>
   <div>
     <el-main>
-      <el-scrollbar height="70vh" style='display: flex; align-items: center;justify-content: center'>
-        <el-card style="max-width: 25vw;display: inline-block;margin-inline: 1em;max-height: 50vh " v-for='(item,key) in result'
-        :body-style='"overflow: hidden"'
+      <el-scrollbar
+        height="70vh"
+        style="display: flex; align-items: center; justify-content: center"
+      >
+        <el-card
+          style="max-width: 25vw; display: inline-block; margin-inline: 1em; max-height: 50vh"
+          v-for="(item, key) in result"
+          :body-style="'overflow: hidden'"
         >
           <template #header>
-          <el-badge class="item" :value='sumList[key]'>
-            <el-text>{{item.name}}</el-text>
-          </el-badge>
-            <div style='float: right'>
-              <el-tag type="info" v-if='style[key]=="default"'>{{style[key]=="default"?"未选择款式":style[key]}}</el-tag>
-              <el-tag type="success" v-else >{{style[key]}}</el-tag>
+            <el-badge class="item" :value="sumList[key]">
+              <el-text>{{ item.name }}</el-text>
+            </el-badge>
+            <div style="float: right">
+              <el-tag type="info" v-if="style[key] == 'default'">{{
+                style[key] == 'default' ? '未选择款式' : style[key]
+              }}</el-tag>
+              <el-tag type="success" v-else>{{ style[key] }}</el-tag>
             </div>
           </template>
-          <img
-            :src="photoPath + item.photo"
-            style="width: 100%;min-width: 13vw;height: 350px"
-          />
+          <img :src="photoPath + item.photo" style="width: 100%; min-width: 13vw; height: 350px" />
         </el-card>
       </el-scrollbar>
     </el-main>

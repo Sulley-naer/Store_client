@@ -5,7 +5,6 @@ import axios from 'axios'
 import { useMyDefaultStore } from '@/stores/counter'
 import { ElMessage, ElNotification } from 'element-plus'
 import Router from '@/router'
-import router from '@/router'
 
 const store = useMyDefaultStore()
 //获取当前视图
@@ -173,7 +172,7 @@ const placeAnOrder = () => {
             v-for="item in UserCar"
             :key="item.id"
             v-show="item.show == null ? true : item.show"
-            @click="router.push('/Detail/' + item.id)"
+            @click="Router.push('/Detail/' + item.id)"
           >
             <div class="common-layout">
               <el-container>

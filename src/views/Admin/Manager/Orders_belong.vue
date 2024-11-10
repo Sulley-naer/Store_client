@@ -7,7 +7,7 @@
           size="large"
           placeholder="请输入关键词"
           v-model="keyWorld"
-          @blur="GetData()"
+          @change="GetData()"
           @keyup.enter="GetData()"
         >
           <template #append>
@@ -24,6 +24,7 @@
             >
               <el-option label="已付款" :value="true" key="2" />
               <el-option label="未付款" :value="false" key="3" />
+              <el-option label="退款中" value="待处理" key="4" />
               <el-option label="任意" :value="null" key="1" />
             </el-select>
           </template>
@@ -66,10 +67,13 @@
   </div>
 </template>
 
+// TODO ! 订单多商品不同店家，订单不会正确的渲染到对应店家上面。
+<!-- 解决方式：生成订单的时候后端解析商品，并数据库存入多个相同订单，店家不同，实际返回最初的订单. -->
+
 <script lang="tsx" setup>
 import axios from 'axios'
 import { onMounted, ref, watch } from 'vue'
-import { type Column, ElInput, ElNotification, ElButton } from 'element-plus'
+import { type Column, ElInput, ElNotification, ElButton, ElSelectV2, ElMessage } from 'element-plus'
 import { Search, Delete, Goods } from '@element-plus/icons-vue'
 import { useMyDefaultStore } from '@/stores/counter' // 引入isoWeek插件
 
@@ -143,7 +147,9 @@ const total = ref(1)
 const data = ref<any[]>([])
 
 const rawData = ref()
+
 const GetData = () => {
+  console.clear()
   axios
     .post('/ShopOrder', {
       page: pages.value,
@@ -154,6 +160,7 @@ const GetData = () => {
       belongs: store.getAdmin
     })
     .then((res) => {
+      console.log(res.data)
       data.value = res.data.data // 假设后端返回的数据包含分页结果在 records 中
       total.value = res.data.total
       ElNotification({
@@ -217,7 +224,7 @@ const columns = [
     dataKey: 'logistics',
     name: 'logistics',
     title: '物流订单',
-    width: 300,
+    width: 160,
     cellRenderer: ({ rowData, column }) => {
       const flag = ref(false)
       const onChange = (value: string) => {
@@ -267,6 +274,7 @@ const columns = [
 
       return rowData.editing ? (
         <InputCell
+          style={{ width: '150px' }}
           forwardRef={setRef}
           value={rowData[column.dataKey!]}
           onChange={onChange}
@@ -274,6 +282,7 @@ const columns = [
         />
       ) : (
         <input
+          style={{ width: '150px' }}
           class="table-v2-inline-editing-trigger"
           onClick={onEnterEditMode}
           style="background: transparent"
@@ -290,6 +299,55 @@ const columns = [
     width: 100,
     cellRenderer: ({ rowData }) => {
       return <ElText v-text={rowData.status ? '已付款' : '未付款'}></ElText>
+    }
+  },
+  {
+    dataKey: 'refund',
+    name: 'refund',
+    title: '退款',
+    width: 125,
+    cellRenderer: ({ rowData }) => {
+      const show = rowData.refund != '待处理'
+
+      const save = () => {
+        axios
+          .post('/UpdateOrder', {
+            ID: rowData.ID,
+            status: rowData.status,
+            refund: '成功'
+          })
+          .then(() => {
+            ElMessage.success('退款设置成功')
+            GetData()
+          })
+          .catch((error) => {
+            ElMessage.error(error.message)
+          })
+      }
+
+      const onChange = (val) => {
+        if (val == '成功') {
+          save()
+        }
+      }
+
+      const options = ref([
+        {
+          label: '待处理',
+          value: '待处理'
+        },
+        {
+          label: '同意退款',
+          value: '成功'
+        }
+      ])
+
+      return (
+        <>
+          {show && <span>{rowData.refund}</span>}
+          {!show && <ElSelectV2 options={options} v-model={rowData.refund} onChange={onChange} />}
+        </>
+      )
     }
   },
   {

@@ -3,7 +3,7 @@ import { useMyDefaultStore } from '@/stores/counter'
 const store = useMyDefaultStore()
 import { Search, UserFilled } from '@element-plus/icons-vue'
 import { ref } from 'vue'
-import router from '@/router'
+import router from '../../router'
 import axios from 'axios'
 
 const search = ref()
