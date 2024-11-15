@@ -57,6 +57,7 @@
                   <p style="margin-bottom: 1em">商品名称：{{ getBabyById(baby)?.name }}</p>
                   <p style="margin-bottom: 1em">商品城市：{{ getBabyById(baby)?.city }}</p>
                   <p style="margin-bottom: 1em">商品店铺：{{ getBabyById(baby)?.belongs }}</p>
+                  <p style="margin-bottom: 1em">物流状态：{{false}}</p>
                   <p style="margin-bottom: 1em">
                     商品款式：<el-tag type="success">{{ ProductList[index].style[k] }} </el-tag>
                   </p>

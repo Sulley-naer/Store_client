@@ -79,6 +79,7 @@ const cancel = () => {
 const validation = () => {
   axios.post('/UpdateOrder', {
     ID: order.value.ID,
+    baby:order.value.baby,
     status: true
   }).then(res => {
     console.log(res.data)

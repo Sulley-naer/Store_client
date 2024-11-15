@@ -100,7 +100,7 @@ const Getdate = () => {
     })
 }
 
-//添加购物车 //TODO 有问题如果购买多个款式，买家只会显示第一个款式
+//添加购物车
 const sendCar = () => {
   axios
     .post('/AddBabyCar', {
@@ -161,7 +161,6 @@ onDeactivated(() => {
   shows.value = []
 })
 </script>
-
 <template>
   <div class="common-layout">
     <el-container>
@@ -226,9 +225,7 @@ onDeactivated(() => {
               >
                 <el-text>价格：</el-text>
                 <el-text type="danger">￥ </el-text>
-                <el-text type="danger" style="font-size: 21px" v-show="type == ''">{{
-                  price * num
-                }}</el-text>
+                <el-text type="danger" style="font-size: 21px">{{ price * num }}</el-text>
               </el-card>
             </div>
             <div style="margin-top: 1em">
