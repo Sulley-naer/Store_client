@@ -42,7 +42,7 @@
             </template>
             <el-card
               v-for="(baby, k) in ProductList[index].id"
-              :key="index"
+              :key="baby"
               style="margin-top: 1em"
             >
               <el-container>
@@ -50,7 +50,7 @@
                   <img
                     style="margin-inline: auto"
                     height="200px"
-                    :src="getBabyById(baby)?.photo"
+                    :src="photoPath + getBabyById(baby)?.photo"
                     :alt="getBabyById(baby)?.name"
                 /></el-aside>
                 <el-main style="position: relative">
@@ -70,6 +70,11 @@
                       type="primary"
                       @click="router.push('/Detail/' + getBabyById(baby)?.id)"
                       v-text="'查看详情'"
+                    />
+                    <el-button
+                      type="primary"
+                      @click="router.push('/Detail/' + getBabyById(baby)?.id)"
+                      v-text="'物流信息'"
                     />
                     <el-button
                       type="danger"
@@ -109,7 +114,7 @@
               @click="cancelRefund(item)"
               :disabled="item.refund != `待处理`"
             />
-            <el-button v-else type="war" v-text="`取消订单`" @click="cancelOrder(item)" />
+            <el-button v-else type="warning" v-text="`取消订单`" @click="cancelOrder(item)" />
           </span>
         </div>
       </template>
@@ -119,11 +124,13 @@
 
 <script lang="ts" setup>
 import { onMounted, Ref, ref, watch } from 'vue'
-import { useMyDefaultStore } from '../../stores/counter'
+import { useMyDefaultStore } from '@/stores/counter'
 import axios from 'axios'
 import router from '../../router'
 import { ElMessage } from 'element-plus'
-
+const servers = import.meta.env
+const photoPath = ref(servers.VITE_photo_path)
+console.log('图片地址', photoPath.value)
 const store = useMyDefaultStore()
 
 const page = defineModel('page')
@@ -239,7 +246,7 @@ interface BabyObj {
 const Babys = ref<BabyObj[]>([])
 const BYSus = ref<boolean | ['wait', 'complete']>(false)
 
-//TODO：垃圾检测，后续增加选项时失效,添加变量解决
+//TODO：垃圾省流检测，后续增加选项时失效,添加变量解决
 const GetBabys = () => {
   const list = new Set(IdList.value)
 
@@ -272,7 +279,6 @@ function getBabyById(id) {
 }
 
 //取消订单
-
 const cancelOrder = (order) => {
   console.log(order)
   axios
@@ -294,7 +300,6 @@ const cancelOrder = (order) => {
 }
 
 //退款逻辑
-
 const refund = (order) => {
   axios
     .post('/StratRefund', {
@@ -338,4 +343,8 @@ onMounted(() => {
 })
 </script>
 
-<style></style>
+<style scoped>
+*::-webkit-scrollbar {
+  display: none;
+}
+</style>

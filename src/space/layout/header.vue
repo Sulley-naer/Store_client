@@ -29,7 +29,7 @@ axios.post('/GetAvatar', { id: User }).then((res) => {
 </script>
 
 <template>
-  <header>
+  <header style='display: flex;'>
     <div class="left">
       <span @click="router.push('/shop')"
         ><img src="/icon/shop.png" alt="" width="20px" /> 商城</span

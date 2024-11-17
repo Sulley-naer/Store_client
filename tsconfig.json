@@ -22,7 +22,7 @@
     "module": "commonjs",
     "target": "ES6",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["./src/*"],
     }
   },
 

@@ -87,6 +87,7 @@ const Getdate = () => {
     })
     .then((res) => {
       console.log(res.data)
+      ElMessage.success("加载完成")
       Data.value = res.data
       defaultPrice.value = Data.value.defaultPrice
       price.value = Data.value.defaultPrice
@@ -97,7 +98,7 @@ const Getdate = () => {
       })
     })
     .catch((err) => {
-      throw new Error('获取数据失败' + err)
+      ElMessage.error(err.response.data.Message)
     })
 }
 

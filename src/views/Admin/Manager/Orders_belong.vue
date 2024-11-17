@@ -170,10 +170,11 @@ const GetData = () => {
       })
       rawData.value = res.data
     })
-    .catch(() => {
+    .catch((error) => {
+      console.log(error)
       ElNotification({
         title: 'error',
-        message: '服务器状态异常',
+        message: error.response.data.Message,
         type: 'error'
       })
     })
@@ -238,8 +239,10 @@ const columns = [
         rowData.editing = true
       }
 
+      let disable = ref(!rowData.status)
       const onExitEditMode = () => {
         if (rowData[column.dataKey!] == '') rowData[column.dataKey!] = '未发货'
+
         if (flag.value) {
           axios
             .post('/OrderDelivery', {
@@ -253,10 +256,12 @@ const columns = [
                 type: 'success'
               })
             })
-            .catch(() => {
+            .catch((e) => {
+              console.log(disable)
+              disable.value = false
               ElNotification({
                 title: 'error',
-                message: '提交无效',
+                message: e.response.data.Message,
                 type: 'error'
               })
             })
@@ -282,11 +287,10 @@ const columns = [
         />
       ) : (
         <input
-          style={{ width: '150px' }}
+          style={{ width: '150px', backgroundColor: 'transparent' }}
           class="table-v2-inline-editing-trigger"
           onClick={onEnterEditMode}
-          style="background: transparent"
-          disabled={!rowData.status}
+          disabled={disable.value}
           v-model={rowData[column.dataKey!]}
         ></input>
       )

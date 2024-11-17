@@ -190,7 +190,7 @@ onDeactivated(() => {
                 v-else
                 :ID="index"
               >
-                <img :src="photoPath + item" width="100%" height="475px" />
+                <img :src="photoPath + item" width="100%" height="475px" alt='banner' />
               </SwiperSlide>
             </Swiper>
 
@@ -211,7 +211,7 @@ onDeactivated(() => {
                 v-else
                 @click="handleSlideClick(index)"
               >
-                <img :src="photoPath + item" width="100%" />
+                <img :src="photoPath + item" width="100%" alt='banner' />
               </SwiperSlide>
             </Swiper>
           </div>
