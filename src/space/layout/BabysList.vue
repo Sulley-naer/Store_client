@@ -30,7 +30,7 @@
               >前往付款</el-tag
             >
           </span>
-          </div>
+        </div>
       </template>
 
       <template #default>
@@ -40,11 +40,7 @@
               订单号：
               {{ item.orderNumber }}
             </template>
-            <el-card
-              v-for="(baby, k) in ProductList[index].id"
-              :key="baby"
-              style="margin-top: 1em"
-            >
+            <el-card v-for="(baby, k) in ProductList[index].id" :key="baby" style="margin-top: 1em">
               <el-container>
                 <el-aside width="200px" style="display: flex; justify-content: space-around">
                   <img
@@ -57,7 +53,7 @@
                   <p style="margin-bottom: 1em">商品名称：{{ getBabyById(baby)?.name }}</p>
                   <p style="margin-bottom: 1em">商品城市：{{ getBabyById(baby)?.city }}</p>
                   <p style="margin-bottom: 1em">商品店铺：{{ getBabyById(baby)?.belongs }}</p>
-                  <p style="margin-bottom: 1em">物流状态：{{false}}</p>
+                  <p style="margin-bottom: 1em">物流状态：{{ false }}</p>
                   <p style="margin-bottom: 1em">
                     商品款式：<el-tag type="success">{{ ProductList[index].style[k] }} </el-tag>
                   </p>
@@ -73,7 +69,13 @@
                     />
                     <el-button
                       type="primary"
-                      @click="()=>{InfoShow=true;orderId = item.ID}"
+                      @click="
+                        () => {
+                          InfoShow = true
+                          orderId.id = item.ID
+                          orderId.active = k
+                        }
+                      "
                       v-text="'物流信息'"
                     />
                   </div>
@@ -113,7 +115,7 @@
         </div>
       </template>
     </el-card>
-    <OrderInfo v-model:show='InfoShow' v-model:orderId='orderId'/>
+    <OrderInfo v-model:show="InfoShow" v-model:orderId="orderId" />
   </div>
 </template>
 
@@ -339,34 +341,36 @@ const cancelRefund = (order) => {
 
 //节流函数
 function throttle(func, delay) {
-  let lastTime = 0; // 上一次执行时间戳
-  let timer = null; // 定时器
+  let lastTime = 0 // 上一次执行时间戳
+  let timer = null // 定时器
 
-  return function(...args) {
-    const now = Date.now();
-    const remaining = delay - (now - lastTime);
+  return function (...args) {
+    const now = Date.now()
+    const remaining = delay - (now - lastTime)
 
-    if (remaining <= 0) { // 时间已到，立即执行
-      clearTimeout(timer);    // 清除定时器
-      timer = null;
-      lastTime = now;
-      func.apply(this, args);
-    } else if (!timer) { // 时间未到，设置定时器
+    if (remaining <= 0) {
+      // 时间已到，立即执行
+      clearTimeout(timer) // 清除定时器
+      timer = null
+      lastTime = now
+      func.apply(this, args)
+    } else if (!timer) {
+      // 时间未到，设置定时器
       timer = setTimeout(() => {
-        lastTime = Date.now();
-        timer = null;
-        func.apply(this, args);
-      }, remaining);
+        lastTime = Date.now()
+        timer = null
+        func.apply(this, args)
+      }, remaining)
     }
-  };
+  }
 }
 
 onActivated(() => {
-  throttle(GetData,1000)
+  throttle(GetData, 1000)
 })
 
 //查看物流Id
-const orderId = ref(0);
+const orderId = ref({ id: 0, active: 0 })
 </script>
 
 <style scoped>
