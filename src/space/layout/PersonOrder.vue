@@ -4,7 +4,7 @@ import { useMyDefaultStore } from '../../stores/counter'
 import BabysList from './BabysList.vue'
 const store = useMyDefaultStore()
 
-const activeMenu = ref('complete')
+const activeMenu = ref('')
 
 const options = ref([
   {
@@ -38,7 +38,9 @@ watch(page, (val) => {
     </el-header>
     <el-main>
       <div class="order-list">
-        <BabysList v-model:page="page" v-modek:total="total" v-model:activeMenu="activeMenu" />
+        <keep-alive>
+          <BabysList v-model:page="page" v-modek:total="total" v-model:activeMenu="activeMenu" />
+        </keep-alive>
       </div>
     </el-main>
     <el-footer>

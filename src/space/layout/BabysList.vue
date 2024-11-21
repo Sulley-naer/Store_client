@@ -30,7 +30,7 @@
               >前往付款</el-tag
             >
           </span>
-        </div>
+          </div>
       </template>
 
       <template #default>
@@ -73,14 +73,8 @@
                     />
                     <el-button
                       type="primary"
-                      @click="router.push('/Detail/' + getBabyById(baby)?.id)"
+                      @click="()=>{InfoShow=true;orderId = item.ID}"
                       v-text="'物流信息'"
-                    />
-                    <el-button
-                      type="danger"
-                      v-text="`申请退款`"
-                      @click="refund(baby)"
-                      v-if="false"
                     />
                   </div>
                 </el-main>
@@ -119,15 +113,17 @@
         </div>
       </template>
     </el-card>
+    <OrderInfo v-model:show='InfoShow' v-model:orderId='orderId'/>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, Ref, ref, watch } from 'vue'
+import { onActivated, Ref, ref, watch } from 'vue'
 import { useMyDefaultStore } from '@/stores/counter'
 import axios from 'axios'
 import router from '../../router'
 import { ElMessage } from 'element-plus'
+import OrderInfo from '@/views/shop/Layout/OrderInfo.vue'
 const servers = import.meta.env
 const photoPath = ref(servers.VITE_photo_path)
 console.log('图片地址', photoPath.value)
@@ -141,6 +137,9 @@ watch(activeMenu, (val) => {
   activeMenu.value = val
   GetData()
 })
+
+//详情页控制控制
+const InfoShow = ref(false)
 
 interface Order {
   ID: number
@@ -338,9 +337,36 @@ const cancelRefund = (order) => {
     })
 }
 
-onMounted(() => {
-  GetData()
+//节流函数
+function throttle(func, delay) {
+  let lastTime = 0; // 上一次执行时间戳
+  let timer = null; // 定时器
+
+  return function(...args) {
+    const now = Date.now();
+    const remaining = delay - (now - lastTime);
+
+    if (remaining <= 0) { // 时间已到，立即执行
+      clearTimeout(timer);    // 清除定时器
+      timer = null;
+      lastTime = now;
+      func.apply(this, args);
+    } else if (!timer) { // 时间未到，设置定时器
+      timer = setTimeout(() => {
+        lastTime = Date.now();
+        timer = null;
+        func.apply(this, args);
+      }, remaining);
+    }
+  };
+}
+
+onActivated(() => {
+  throttle(GetData,1000)
 })
+
+//查看物流Id
+const orderId = ref(0);
 </script>
 
 <style scoped>

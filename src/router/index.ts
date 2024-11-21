@@ -47,8 +47,15 @@ const router = createRouter({
     {
       path:'/space/:id',
       name:"space",
-      component:() => import("@/space/index.vue")
-    }
+      component:() => import("@/space/index.vue"),
+      children:[
+        {
+          name: "OrderInfo",
+          path: 'OrderInfo', // 去掉开头的 '/'
+          component: () => import("@/views/shop/Layout/OrderInfo.vue")
+        }
+      ]
+    },
   ]
 })
 
